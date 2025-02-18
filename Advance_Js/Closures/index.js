@@ -81,3 +81,14 @@ counter.increment();
 console.log(counter.value());
 counter.decrement();
 console.log(counter.value());
+
+// function greet(){
+//     console.log("Hello Shivam ");
+// }
+// greet();
+
+// function newGreet(fn){
+//     fn();
+// }
+
+// newGreet(greet);
