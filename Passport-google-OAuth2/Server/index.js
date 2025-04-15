@@ -1,8 +1,9 @@
 import express from 'express';
 import passport from 'passport';
-import './auth.js';
+import './passport.js';
 import session from 'express-session';
-
+import cors from 'cors';
+import mongoose from 'mongoose';
 
 
 function isLoggedIn(req, res, next){
@@ -10,6 +11,12 @@ function isLoggedIn(req, res, next){
 }
 
 const app = express();
+ app.use(cors({
+     origin : process.env.CLIENT_URI,
+     credentials : true,
+ } )
+ )
+ 
 app.use(session({secret : process.env.SESSION_SECRET, resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());    
@@ -48,5 +55,11 @@ app.get('/auth/logout', (req, res)=>{
     });
     res.send('Goodbye!')
 })
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log('MongoDB connected'))
+
 
 app.listen(5000 , () =>{ console.log('Server is running on port 5000')});
