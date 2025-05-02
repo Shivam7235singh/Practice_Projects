@@ -5,7 +5,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/user', { withCredentials: true })
+    axios.get('http://localhost:5000/auth/google', { withCredentials: true })
       .then((response) => {
         console.log(response.data);
         setUser(response.data);
