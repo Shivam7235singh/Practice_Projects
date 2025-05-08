@@ -1,3 +1,5 @@
+{% load static tailwind_tags %}
+{% extends "index.html" %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -9,9 +11,15 @@
         {% block title %}Default Value{% endblock title %}
     </title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% tailwind_css %}
 </head>
 <body>
-   <nav>this is nav bar </nav>
-   {% block content %}{% endblock %}
+    {% block content %}
+    <nav class = 'bg-green-600'>this is nav bar </nav>
+     
+    {% comment %} <h1 class = 'text-3xl font-bold'>Welcome to the Home Page</h1>
+     <p class = 'text-lg'>This is the main content of the home page.</p> {% endcomment %}
+    {% endblock %}
+   
 </body>
 </html>
